@@ -1,5 +1,5 @@
 {
-    "name": "guillermoandrae/php-skeleton",
+    "name": "guillermoandrae/php-highrise-client",
     "type": "library",
     "license": "MIT",
     "require": {
