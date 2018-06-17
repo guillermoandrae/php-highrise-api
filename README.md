@@ -1,10 +1,10 @@
 # PHP Highrise API Client
-[![Travis](https://img.shields.io/travis/guillermoandrae/php-highrise-client.svg?style=flat-square)](https://travis-ci.org/guillermoandrae/php-highrise-client) [![Scrutinizer](https://img.shields.io/scrutinizer/g/guillermoandrae/php-highrise-client.svg?style=flat-square)](https://scrutinizer-ci.com/g/guillermoandrae/php-highrise-client/) [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/guillermoandrae/php-highrise-client.svg?style=flat-square)](https://scrutinizer-ci.com/g/guillermoandrae/php-highrise-client/) [![PHP from Travis config](https://img.shields.io/travis/php-v/guillermoandrae/php-highrise-client.svg?style=flat-square)](https://travis-ci.org/guillermoandrae/php-highrise-client)
+[![Travis](https://img.shields.io/travis/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://travis-ci.org/guillermoandrae/php-highrise-api) [![Scrutinizer](https://img.shields.io/scrutinizer/g/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://scrutinizer-ci.com/g/guillermoandrae/php-highrise-api/) [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://scrutinizer-ci.com/g/guillermoandrae/php-highrise-api/) [![PHP from Travis config](https://img.shields.io/travis/php-v/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://travis-ci.org/guillermoandrae/php-highrise-api)
 
 ## Installation
 Do this, then relax:
 ```
-composer require guillermoandrae/php-highrise-client
+composer require guillermoandrae/php-highrise-api
 ```
 
 ## Testing

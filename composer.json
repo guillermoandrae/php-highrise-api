@@ -1,5 +1,5 @@
 {
-    "name": "guillermoandrae/php-highrise-client",
+    "name": "guillermoandrae/php-highrise-api",
     "type": "library",
     "license": "MIT",
     "require": {
