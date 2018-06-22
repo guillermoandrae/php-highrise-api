@@ -2,13 +2,16 @@
 
 namespace Guillermoandrae\Highrise\Resources;
 
-use Guillermoandrae\Highrise\Http\ClientInterface;
+use Guillermoandrae\Common\CollectionInterface;
 
-class Cases extends AbstractResource
+final class Cases extends AbstractUnsearchableResource
 {
-    public function __construct(ClientInterface $httpClient)
+    protected $name = 'kases';
+
+    public function findAll(array $options = []): CollectionInterface
     {
-        parent::__construct($httpClient);
-        $this->name = 'kases';
+        $status = isset($options['status']) ? $options['status'] : 'open';
+        $uri = sprintf('/%s/%s.xml', $this->getName(), $status);
+        return $this->getAdapter()->request('GET', $uri, $options);
     }
 }

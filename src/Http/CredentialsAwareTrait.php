@@ -19,11 +19,18 @@ trait CredentialsAwareTrait
     protected $token;
 
     /**
+     * The password to use for authentication.
+     *
+     * @var string
+     */
+    protected $password = 'X';
+
+    /**
      * Returns the subdomain.
      *
      * @return string
      */
-    public function getSubdomain(): string
+    final public function getSubdomain(): string
     {
         return $this->subdomain;
     }
@@ -34,7 +41,7 @@ trait CredentialsAwareTrait
      * @param string $subdomain
      * @return null
      */
-    public function setSubdomain(string $subdomain)
+    final public function setSubdomain(string $subdomain)
     {
         $this->subdomain = $subdomain;
     }
@@ -44,7 +51,7 @@ trait CredentialsAwareTrait
      *
      * @return string
      */
-    public function getToken(): string
+    final public function getToken(): string
     {
         return $this->token;
     }
@@ -55,8 +62,28 @@ trait CredentialsAwareTrait
      * @param string $token
      * @return null
      */
-    public function setToken(string $token)
+    final public function setToken(string $token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * Returns the password registered with this object.
+     *
+     * @return string
+     */
+    final public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * Registers the password with this object.
+     *
+     * @param string $password  The password to use for authentication.
+     */
+    final public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 }

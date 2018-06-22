@@ -3,16 +3,16 @@
 namespace Guillermoandrae\Highrise\Client;
 
 use BadMethodCallException;
-use Guillermoandrae\Highrise\Http\Client as HttpClient;
-use Guillermoandrae\Highrise\Http\ClientAwareTrait;
-use Guillermoandrae\Highrise\Http\ClientInterface;
+use Guillermoandrae\Highrise\Http\Adapter;
+use Guillermoandrae\Highrise\Http\AdapterAwareTrait;
+use Guillermoandrae\Highrise\Http\AdapterInterface;
 use Guillermoandrae\Highrise\Http\CredentialsAwareTrait;
 use Guillermoandrae\Highrise\Resources;
 use Guillermoandrae\Highrise\Resources\ResourceFactory;
 use Guillermoandrae\Highrise\Resources\ResourceInterface;
 
 /**
- * Class Client
+ * Highrise Client class.
  *
  * @method Resources\Account account()
  * @method Resources\Cases cases()
@@ -26,18 +26,20 @@ use Guillermoandrae\Highrise\Resources\ResourceInterface;
  */
 class Client
 {
-    use ClientAwareTrait, CredentialsAwareTrait;
+    use AdapterAwareTrait, CredentialsAwareTrait;
 
     /**
-     * @var ClientInterface
+     * The HTTP adapter.
+     *
+     * @var AdapterInterface
      */
-    private $defaultHttpClient;
+    private $defaultAdapter;
 
     /**
      * Client constructor.
      *
-     * @param string $subdomain
-     * @param string $token
+     * @param string $subdomain The account subdomain.
+     * @param string $token The authentication token.
      */
     public function __construct(string $subdomain = '', string $token = '')
     {
@@ -45,12 +47,22 @@ class Client
         $this->setToken($token);
     }
 
+    /**
+     * Invoked when non-existent methods are called. Can be used for returning
+     * resources.
+     *
+     * @param string $name The method name.
+     * @param array $arguments The method arguments.
+     * @return mixed
+     */
     public function __call($name, $arguments)
     {
         try {
             return $this->resource($name);
         } catch (\Exception $ex) {
-            throw new BadMethodCallException(sprintf('The %s method does not exist.', $name));
+            throw new BadMethodCallException(
+                sprintf('The %s method does not exist.', $name)
+            );
         }
     }
 
@@ -62,20 +74,20 @@ class Client
      */
     public function resource(string $name): ResourceInterface
     {
-        if (!$client = $this->httpClient) {
-            $this->setHttpClient($this->getDefaultHttpClient());
+        if (!$client = $this->adapter) {
+            $this->setAdapter($this->getDefaultAdapter());
         }
-        return ResourceFactory::factory($name, $this->getHttpClient());
+        return ResourceFactory::factory($name, $this->getAdapter());
     }
 
     /**
-     * @return ClientInterface
+     * @return AdapterInterface
      */
-    public function getDefaultHttpClient(): ClientInterface
+    public function getDefaultAdapter(): AdapterInterface
     {
-        if (!$this->defaultHttpClient) {
-            $this->defaultHttpClient = new HttpClient($this->getSubdomain(), $this->getToken());
+        if (!$this->defaultAdapter) {
+            $this->defaultAdapter = new Adapter($this->getSubdomain(), $this->getToken());
         }
-        return $this->defaultHttpClient;
+        return $this->defaultAdapter;
     }
 }
