@@ -1,6 +1,8 @@
 # PHP Highrise API Client
 [![Travis](https://img.shields.io/travis/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://travis-ci.org/guillermoandrae/php-highrise-api) [![Scrutinizer](https://img.shields.io/scrutinizer/g/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://scrutinizer-ci.com/g/guillermoandrae/php-highrise-api/) [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://scrutinizer-ci.com/g/guillermoandrae/php-highrise-api/) [![PHP from Travis config](https://img.shields.io/travis/php-v/guillermoandrae/php-highrise-api.svg?style=flat-square)](https://travis-ci.org/guillermoandrae/php-highrise-api)
 
+See the [Highrise API documentation](https://github.com/basecamp/highrise-api) for information about specific resources.
+
 ## Installation
 Do this, then relax:
 ```
