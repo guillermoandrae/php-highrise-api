@@ -2,43 +2,54 @@
 
 namespace GuillermoandraeTest\Highrise\Resources;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use Guillermoandrae\Highrise\Http\Client as HttpClient;
-use Guillermoandrae\Highrise\Resources\AbstractResource;
-use PHPUnit\Framework\TestCase;
-
 class ResourceTest extends TestCase
 {
-    private $resource;
-
-    public function testFetch()
+    public function testFind()
     {
-        $item = $this->resource->fetch(2);
-        $this->assertEquals(6, $item->id);
+        $id = '12345';
+        $resource = $this->getMockResourceFromAbstract("<test><id>$id</id></test>");
+        $item = $resource->find($id);
+        $this->assertEquals($id, $item['id']);
+    }
+
+    public function testFindAll()
+    {
+        $body = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
+        $resource = $this->getMockResourceFromAbstract($body);
+        $results = $resource->findAll();
+        $this->assertCount(2, $results);
     }
 
     public function testSearch()
     {
-        $results = $this->resource->search();
+        $body = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
+        $resource = $this->getMockResourceFromAbstract($body);
+        $results = $resource->search();
         $this->assertCount(2, $results);
     }
 
-    protected function setUp()
+    public function testCreate()
     {
-        $mock = new MockHandler([
-            new Response(200, [], '<test><id>6</id></test>'),
-            new Response(200, [], '<tests><test><id>12</id></test><test><id>18</id></test></tests>'),
-        ]);
-        $handler = HandlerStack::create($mock);
-        $guzzleClient = new Client(['handler' => $handler]);
-        $client = new HttpClient('test', '123456');
-        $client->setGuzzleClient($guzzleClient);
-        $this->resource = $this->getMockForAbstractClass(
-            AbstractResource::class,
-            [$client]
-        );
+        $name = 'test';
+        $body = "<test><name>$name</name></test>";
+        $resource = $this->getMockResourceFromAbstract($body);
+        $item = $resource->create(['name' => $name]);
+        $this->assertSame($name, $item['name']);
+    }
+
+    public function testUpdate()
+    {
+        $name = 'new';
+        $body = "<test><name>$name</name></test>";
+        $resource = $this->getMockResourceFromAbstract($body);
+        $item = $resource->update(5, ['name' => $name]);
+        $this->assertSame($name, $item['name']);
+    }
+
+    public function testDelete()
+    {
+        $resource = $this->getMockResourceFromAbstract('', 201);
+        $result = $resource->delete(1);
+        $this->assertTrue($result);
     }
 }
