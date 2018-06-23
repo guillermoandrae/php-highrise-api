@@ -2,8 +2,11 @@
 
 require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 
-$subdomain = 'gui6';
-$token = '80d0065571d313f881bc4c615bf30093';
-$client = new \Guillermoandrae\Highrise\Client\Client($subdomain, $token);
-$results = $client->cases()->search();
+use Guillermoandrae\Highrise\Client\Client;
+
+$subdomain = ''; // add your subdomain here
+$token = ''; // add your token
+
+$client = new Client($subdomain, $token);
+$results = $client->cases()->findOpen();
 var_dump($results);
