@@ -17,6 +17,7 @@ final class Xml
      */
     public static function parse(string $xml)
     {
+        libxml_use_internal_errors(true);
         if (!$obj = simplexml_load_string($xml)) {
             return [];
         }
