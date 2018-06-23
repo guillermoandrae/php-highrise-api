@@ -3,7 +3,7 @@
 namespace Guillermoandrae\Highrise\Client;
 
 use BadMethodCallException;
-use Guillermoandrae\Highrise\Http\Adapter;
+use Guillermoandrae\Highrise\Http\GuzzleAdapter;
 use Guillermoandrae\Highrise\Http\AdapterAwareTrait;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
 use Guillermoandrae\Highrise\Http\CredentialsAwareTrait;
@@ -12,7 +12,7 @@ use Guillermoandrae\Highrise\Resources\ResourceFactory;
 use Guillermoandrae\Highrise\Resources\ResourceInterface;
 
 /**
- * Highrise Client class.
+ * Highrise API Client class.
  *
  * @method Resources\Account account()
  * @method Resources\Cases cases()
@@ -23,8 +23,10 @@ use Guillermoandrae\Highrise\Resources\ResourceInterface;
  * @method Resources\People people()
  * @method Resources\Tasks tasks()
  * @method Resources\Users users()
+ *
+ * @author Guillermo A. Fisher <me@guillermoandraefisher.com>
  */
-class Client
+final class Client implements ClientInterface
 {
     use AdapterAwareTrait, CredentialsAwareTrait;
 
@@ -66,12 +68,6 @@ class Client
         }
     }
 
-    /**
-     * Returns the desired resource.
-     *
-     * @param string $name  The name of the desired resource.
-     * @return ResourceInterface
-     */
     public function resource(string $name): ResourceInterface
     {
         if (!$client = $this->adapter) {
@@ -80,13 +76,10 @@ class Client
         return ResourceFactory::factory($name, $this->getAdapter());
     }
 
-    /**
-     * @return AdapterInterface
-     */
     public function getDefaultAdapter(): AdapterInterface
     {
         if (!$this->defaultAdapter) {
-            $this->defaultAdapter = new Adapter($this->getSubdomain(), $this->getToken());
+            $this->defaultAdapter = new GuzzleAdapter($this->getSubdomain(), $this->getToken());
         }
         return $this->defaultAdapter;
     }

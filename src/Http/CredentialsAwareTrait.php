@@ -26,7 +26,7 @@ trait CredentialsAwareTrait
     protected $password = 'X';
 
     /**
-     * Returns the subdomain.
+     * Returns the subdomain registered with this object.
      *
      * @return string
      */
@@ -38,8 +38,7 @@ trait CredentialsAwareTrait
     /**
      * Registers the subdomain with this object.
      *
-     * @param string $subdomain
-     * @return null
+     * @param string $subdomain The subdomain.
      */
     final public function setSubdomain(string $subdomain)
     {
@@ -47,7 +46,7 @@ trait CredentialsAwareTrait
     }
 
     /**
-     * Returns the token.
+     * Returns the token registered with this object.
      *
      * @return string
      */

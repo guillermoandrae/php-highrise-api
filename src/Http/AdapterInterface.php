@@ -2,18 +2,17 @@
 
 namespace Guillermoandrae\Highrise\Http;
 
-use GuzzleHttp\Client;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 interface AdapterInterface
 {
     /**
-     * The value for the User-Agent header.
+     * The default value for the User-Agent header.
      *
      * @const string
      */
-    const HEADER_USER_AGENT = 'Highrise API PHP Client';
+    const HEADER_DEFAULT_USER_AGENT = 'Highrise API PHP Client (https://github.com/guillermoandrae/php-highrise-api)';
 
     /**
      * Makes requests using the registered HTTP client.
@@ -27,14 +26,14 @@ interface AdapterInterface
     public function request(string $method, string $uri, array $options = []);
 
     /**
-     * Returns the last request.
+     * Returns the last request made with this adapter.
      *
      * @return RequestInterface
      */
     public function getLastRequest(): RequestInterface;
 
     /**
-     * Returns the last response.
+     * Returns the last response received by this adapter.
      *
      * @return ResponseInterface
      */
@@ -43,14 +42,14 @@ interface AdapterInterface
     /**
      * Registers the HTTP client with this object.
      *
-     * @param Client $client  The HTTP client.
+     * @param mixed $client  The HTTP client.
      */
-    public function setClient(Client $client);
+    public function setClient($client);
 
     /**
      * Returns the HTTP client registered with this object.
      *
-     * @return Client
+     * @return mixed
      */
-    public function getClient(): Client;
+    public function getClient();
 }

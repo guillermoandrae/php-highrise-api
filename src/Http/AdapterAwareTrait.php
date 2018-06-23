@@ -12,7 +12,7 @@ trait AdapterAwareTrait
     protected $adapter;
 
     /**
-     * Registers the HTTP adapter with the class.
+     * Registers the HTTP adapter with this class.
      *
      * @param AdapterInterface $adapter  The HTTP adapter.
      */
@@ -22,7 +22,7 @@ trait AdapterAwareTrait
     }
 
     /**
-     * Returns the HTTP adapter.
+     * Returns the HTTP adapter registered with this class.
      *
      * @return AdapterInterface
      */
