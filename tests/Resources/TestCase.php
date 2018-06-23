@@ -12,7 +12,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Guillermoandrae\Highrise\Http\Adapter;
+use Guillermoandrae\Highrise\Http\GuzzleAdapter;
 
 class TestCase extends PHPUnitTestCase
 {
@@ -48,7 +48,7 @@ class TestCase extends PHPUnitTestCase
             new Response($httpStatusCode, [], $body)
         ]);
         $handler = HandlerStack::create($mock);
-        $adapter = new Adapter('test', '123456');
+        $adapter = new GuzzleAdapter('test', '123456');
         $adapter->setClient(new Client(['handler' => $handler]));
         return $adapter;
     }
