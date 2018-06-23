@@ -3,7 +3,7 @@
          backupGlobals="true"
          colors="true">
     <testsuites>
-        <testsuite name="PHP Repository Library Tests">
+        <testsuite name="Highrise API PHP Client Tests">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
