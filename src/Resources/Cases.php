@@ -11,7 +11,7 @@ final class Cases extends AbstractResource
 
     protected $name = 'kases';
 
-    public function findAll(array $options = []): CollectionInterface
+    public function findAll(array $filters = []): CollectionInterface
     {
         return $this->findOpen();
     }

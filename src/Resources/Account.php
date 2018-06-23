@@ -28,7 +28,7 @@ class Account extends AbstractResource
         );
     }
 
-    public function findAll(array $options = []): CollectionInterface
+    public function findAll(array $filters = []): CollectionInterface
     {
         throw new BadMethodCallException(
             'The findAll method of this resource is not supported.'

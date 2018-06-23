@@ -38,25 +38,25 @@ abstract class AbstractResource implements ResourceInterface
         return $this->getAdapter()->request('GET', $uri);
     }
 
-    public function findAll(array $options = []): CollectionInterface
+    public function findAll(array $filters = []): CollectionInterface
     {
         $uri = sprintf('/%s.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri, $options);
+        return $this->getAdapter()->request('GET', $uri, $filters);
     }
 
-    public function search(array $options = []): CollectionInterface
+    public function search(array $criteria = []): CollectionInterface
     {
         $uri = sprintf('/%s/search.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri, $options);
+        return $this->getAdapter()->request('GET', $uri, $criteria);
     }
 
-    public function create(array $options): array
+    public function create(array $data): array
     {
         $uri = sprintf('/%s.xml', $this->getName());
-        return $this->getAdapter()->request('POST', $uri, $options);
+        return $this->getAdapter()->request('POST', $uri, $data);
     }
 
-    public function update($id, array $options): array
+    public function update($id, array $data): array
     {
         $uri = sprintf('/%s/%s.xml?reload=true', $this->getName(), $id);
         return $this->getAdapter()->request('PUT', $uri);

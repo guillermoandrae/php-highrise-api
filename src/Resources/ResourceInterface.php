@@ -16,38 +16,38 @@ interface ResourceInterface
     public function find($id): array;
 
     /**
-     * Finds resources using the provided options.
+     * Finds resources using the provided filters.
      *
-     * @param array $options  The request options.
+     * @param array $filters  The request filters.
      * @return CollectionInterface
      */
-    public function findAll(array $options = []): CollectionInterface;
+    public function findAll(array $filters = []): CollectionInterface;
 
     /**
-     * Searches for resources using the provided options.
+     * Searches for resources using the provided criteria.
      *
-     * @param array $options  The search request options.
+     * @param array $criteria  The search criteria.
      * @return CollectionInterface
      */
-    public function search(array $options = []): CollectionInterface;
+    public function search(array $criteria = []): CollectionInterface;
 
     /**
-     * Creates a new resource using the provided options.
+     * Creates a new resource using the provided data.
      *
-     * @param array $options  The search request options.
+     * @param array $data  The data to use when creating a resource.
      * @return array
      */
-    public function create(array $options): array;
+    public function create(array $data): array;
 
     /**
      * Updates the resource associated with the provided ID using the provided
-     * options.
+     * data.
      *
      * @param mixed $id  The ID.
-     * @param array $options The search request options.
+     * @param array $data The data to use when updating a resource.
      * @return array
      */
-    public function update($id, array $options): array;
+    public function update($id, array $data): array;
 
     /**
      * Deletes the resource associated with the provided ID.
