@@ -17,7 +17,9 @@ final class Xml
      */
     public static function parse(string $xml)
     {
-        $obj = simplexml_load_string($xml);
+        if (!$obj = simplexml_load_string($xml)) {
+            return [];
+        }
         if ($obj->attributes()) {
             $items = [];
             foreach ($obj->children() as $child) {
