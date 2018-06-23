@@ -1,6 +1,7 @@
 {
     "name": "guillermoandrae/php-highrise-api",
     "type": "library",
+    "description": "A PHP client for the Highrise API.",
     "license": "MIT",
     "require": {
         "php": "^7.1",
