@@ -2,7 +2,6 @@
 
 namespace Guillermoandrae\Highrise\Resources;
 
-use BadMethodCallException;
 use Guillermoandrae\Common\CollectionInterface;
 use Guillermoandrae\Highrise\Http\AdapterAwareTrait;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
@@ -12,7 +11,7 @@ abstract class AbstractResource implements ResourceInterface
     use AdapterAwareTrait;
 
     /**
-     * The name used in the resource endpoint.
+     * The name to be used in the resource endpoint.
      *
      * @var string
      */
@@ -21,7 +20,7 @@ abstract class AbstractResource implements ResourceInterface
     /**
      * Builds the resource object.
      *
-     * @param AdapterInterface $adapter The HTTP adapter.
+     * @param AdapterInterface $adapter  The HTTP adapter.
      */
     public function __construct(AdapterInterface $adapter)
     {
@@ -72,19 +71,5 @@ abstract class AbstractResource implements ResourceInterface
     public function getName(): string
     {
         return $this->name;
-    }
-
-    /**
-     * Use this method when one of the other normally available methods should
-     * not be supported.
-     *
-     * @param string $method The method.
-     * @throws BadMethodCallException Thrown when invoked.
-     */
-    protected function deny(string $method)
-    {
-        throw new BadMethodCallException(
-            sprintf('The %s method of this resource is not supported.', $method)
-        );
     }
 }

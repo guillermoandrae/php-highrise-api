@@ -4,6 +4,8 @@ namespace Guillermoandrae\Highrise\Resources;
 
 class Users extends AbstractResource
 {
+    use UnsearchableResourceTrait, ReadOnlyResourceTrait;
+
     /**
      * Returns the current user's information.
      *

@@ -10,7 +10,7 @@ interface ResourceInterface
     /**
      * Finds the resource associated with the provided ID.
      *
-     * @param mixed $id The ID.
+     * @param mixed $id  The ID.
      * @return array
      */
     public function find($id): array;
@@ -18,7 +18,7 @@ interface ResourceInterface
     /**
      * Finds resources using the provided options.
      *
-     * @param array $options The request options.
+     * @param array $options  The request options.
      * @return CollectionInterface
      */
     public function findAll(array $options = []): CollectionInterface;
@@ -26,7 +26,7 @@ interface ResourceInterface
     /**
      * Searches for resources using the provided options.
      *
-     * @param array $options The search request options.
+     * @param array $options  The search request options.
      * @return CollectionInterface
      */
     public function search(array $options = []): CollectionInterface;
@@ -34,15 +34,16 @@ interface ResourceInterface
     /**
      * Creates a new resource using the provided options.
      *
-     * @param array $options The search request options.
+     * @param array $options  The search request options.
      * @return array
      */
     public function create(array $options): array;
 
     /**
-     * Updates a resource using the provided options.
+     * Updates the resource associated with the provided ID using the provided
+     * options.
      *
-     * @param mixed $id The ID.
+     * @param mixed $id  The ID.
      * @param array $options The search request options.
      * @return array
      */
@@ -51,20 +52,20 @@ interface ResourceInterface
     /**
      * Deletes the resource associated with the provided ID.
      *
-     * @param mixed $id The ID.
+     * @param mixed $id  The ID.
      * @return bool
      */
     public function delete($id): bool;
 
     /**
-     * Returns the name used in the resource endpoint.
+     * Returns the name to be used in the resource endpoint.
      *
      * @return string
      */
     public function getName(): string;
 
     /**
-     * Returns the HTTP adapter.
+     * Returns the HTTP adapter registered with this object.
      *
      * @return AdapterInterface
      */

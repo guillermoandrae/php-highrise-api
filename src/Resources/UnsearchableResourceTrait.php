@@ -2,12 +2,15 @@
 
 namespace Guillermoandrae\Highrise\Resources;
 
+use BadMethodCallException;
 use Guillermoandrae\Common\CollectionInterface;
 
-abstract class AbstractUnsearchableResource extends AbstractResource
+trait UnsearchableResourceTrait
 {
     final public function search(array $options = []): CollectionInterface
     {
-        return $this->deny('search');
+        throw new BadMethodCallException(
+            'The search method of this resource is not supported.'
+        );
     }
 }
