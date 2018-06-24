@@ -48,10 +48,13 @@ abstract class AbstractAdapter implements AdapterInterface
     {
         try {
             $this->send($method, $uri, $options);
-            if ($body = (string) $this->getLastResponse()->getBody()) {
-                return Xml::parse($body);
+            if ($method == 'DELETE') {
+                return ($this->getLastResponse()->getStatusCode() == 200);
             }
-            return ($this->getLastResponse()->getStatusCode() == 201);
+            if ($body = (string) $this->getLastResponse()->getBody()) {
+                return Xml::fromXml($body);
+            }
+            return false;
         } catch (BadResponseException $ex) {
             throw new RequestException($ex->getMessage(), $ex->getCode());
         }
