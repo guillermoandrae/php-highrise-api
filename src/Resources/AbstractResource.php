@@ -3,8 +3,10 @@
 namespace Guillermoandrae\Highrise\Resources;
 
 use Guillermoandrae\Common\CollectionInterface;
+use Guillermoandrae\Highrise\Helpers\Xml;
 use Guillermoandrae\Highrise\Http\AdapterAwareTrait;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
+use ICanBoogie\Inflector;
 
 abstract class AbstractResource implements ResourceInterface
 {
@@ -57,13 +59,15 @@ abstract class AbstractResource implements ResourceInterface
     public function create(array $data): array
     {
         $uri = sprintf('/%s.xml', $this->getName());
-        return $this->getAdapter()->request('POST', $uri, $data);
+        $body = Xml::toXml(Inflector::get()->singularize($this->getName()), $data);
+        return $this->getAdapter()->request('POST', $uri, ['body' => $body]);
     }
 
     public function update($id, array $data): array
     {
         $uri = sprintf('/%s/%s.xml?reload=true', $this->getName(), $id);
-        return $this->getAdapter()->request('PUT', $uri);
+        $body = Xml::toXml(Inflector::get()->singularize($this->getName()), $data);
+        return $this->getAdapter()->request('PUT', $uri, ['body' => $body]);
     }
 
     public function delete($id): bool
