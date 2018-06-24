@@ -47,7 +47,11 @@ abstract class AbstractResource implements ResourceInterface
     public function search(array $criteria = []): CollectionInterface
     {
         $uri = sprintf('/%s/search.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri, $criteria);
+        $query = [];
+        foreach ($criteria as $key => $value) {
+            $query[sprintf('criteria[%s]', $key)] = $value;
+        }
+        return $this->getAdapter()->request('GET', $uri, ['query' => $query]);
     }
 
     public function create(array $data): array
