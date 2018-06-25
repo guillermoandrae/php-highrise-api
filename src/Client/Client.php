@@ -27,7 +27,7 @@ final class Client implements ClientInterface
     use AdapterAwareTrait, CredentialsAwareTrait;
 
     /**
-     * The HTTP adapter.
+     * The default HTTP adapter.
      *
      * @var AdapterInterface
      */
