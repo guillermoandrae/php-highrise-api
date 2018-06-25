@@ -18,6 +18,7 @@ use Guillermoandrae\Highrise\Resources\ResourceInterface;
  * @method Resources\Cases cases()
  * @method Resources\Deals deals()
  * @method Resources\People people()
+ * @method Resources\Tasks tasks()
  * @method Resources\Users users()
  *
  * @author Guillermo A. Fisher <me@guillermoandraefisher.com>
