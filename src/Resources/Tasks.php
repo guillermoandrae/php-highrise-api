@@ -11,7 +11,7 @@ class Tasks extends AbstractRelationalResource
     public function findAll(array $filters = []): CollectionInterface
     {
         $uri = sprintf('/%s/all.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri);
+        return $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
     }
 
     /**
