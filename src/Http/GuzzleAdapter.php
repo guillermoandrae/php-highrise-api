@@ -34,6 +34,10 @@ class GuzzleAdapter extends AbstractAdapter
             $body = $options['body'];
             unset($options['body']);
         }
+        if (isset($options['query'])) {
+            $uri .= '?' . http_build_query($options['query']);
+            unset($options['body']);
+        }
         $this->lastRequest = new Request($method, $uri, $headers, $body);
         $this->lastResponse = $this->getClient()->send($this->lastRequest, $options);
     }

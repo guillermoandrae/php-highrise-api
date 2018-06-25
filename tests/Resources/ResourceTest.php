@@ -27,13 +27,24 @@ class ResourceTest extends TestCase
         $this->assertCount(2, $resource->findAll());
     }
 
-    public function testSearch()
+    public function testSearchWithTerm()
+    {
+        $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
+        $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
+        $resource = $this->getResource($adapter);
+        $resource->search(['term' => 'test']);
+        $actualQuery = $resource->getAdapter()->getLastRequest()->getUri()->getQuery();
+        $this->assertSame(http_build_query(['term' => 'test']), $actualQuery);
+    }
+
+    public function testSearchWithCriteria()
     {
         $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $resource = $this->getResource($adapter);
         $resource->search(['test' => 'test']);
-        $this->assertContains('search.xml', $resource->getAdapter()->getLastRequest()->getUri()->getPath());
+        $actualQuery = $resource->getAdapter()->getLastRequest()->getUri()->getQuery();
+        $this->assertSame(http_build_query(['criteria[test]' => 'test']), $actualQuery);
     }
 
     public function testCreate()

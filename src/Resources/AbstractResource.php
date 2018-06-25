@@ -50,8 +50,12 @@ abstract class AbstractResource implements ResourceInterface
     {
         $uri = sprintf('/%s/search.xml', $this->getName());
         $query = [];
-        foreach ($criteria as $key => $value) {
-            $query[sprintf('criteria[%s]', $key)] = $value;
+        if (isset($criteria['term'])) {
+            $query['term'] = $criteria['term'];
+        } else {
+            foreach ($criteria as $key => $value) {
+                $query[sprintf('criteria[%s]', $key)] = $value;
+            }
         }
         return $this->getAdapter()->request('GET', $uri, ['query' => $query]);
     }
