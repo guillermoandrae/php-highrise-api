@@ -15,7 +15,22 @@ class Tasks extends AbstractResource
     }
 
     /**
-     * Returns all upcoming tasks.
+     * Returns all upcoming tasks assigned to the authenticated user related to
+     * a person, company, case, or deal.
+     *
+     * @param string $name The name of the resource for which tasks should be
+     *                     returned.
+     * @param mixed $id The resource ID.
+     * @return CollectionInterface
+     */
+    public function findBy(string $name, $id): CollectionInterface
+    {
+        $uri = sprintf('/%s/%s/%s.xml', $name, $id, $this->getName());
+        return $this->getAdapter()->request('GET', $uri);
+    }
+
+    /**
+     * Returns all upcoming tasks assigned to the authenticated user.
      *
      * @return CollectionInterface
      */
@@ -26,7 +41,7 @@ class Tasks extends AbstractResource
     }
 
     /**
-     * Returns all assigned tasks.
+     * Returns all assigned tasks assigned to the authenticated user.
      *
      * @return CollectionInterface
      */
@@ -37,7 +52,7 @@ class Tasks extends AbstractResource
     }
 
     /**
-     * Returns all completed tasks.
+     * Returns all completed tasks assigned to the authenticated user.
      *
      * @return CollectionInterface
      */
@@ -48,7 +63,7 @@ class Tasks extends AbstractResource
     }
 
     /**
-     * Returns all of today's tasks.
+     * Returns all of today's tasks assigned to the authenticated user.
      *
      * @return CollectionInterface
      */

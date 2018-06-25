@@ -14,6 +14,14 @@ class TasksTest extends TestCase
         $this->assertSameLastRequestUri('/tasks/all.xml', $resource);
     }
 
+    public function testFindBy()
+    {
+        $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
+        $resource = $this->getMockResource('tasks', $body);
+        $resource->findBy('people', 3);
+        $this->assertSameLastRequestUri('/people/3/tasks.xml', $resource);
+    }
+
     public function testFindUpcoming()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
