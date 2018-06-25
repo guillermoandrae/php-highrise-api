@@ -17,6 +17,7 @@ use Guillermoandrae\Highrise\Resources\ResourceInterface;
  * @method Resources\Account account()
  * @method Resources\Cases cases()
  * @method Resources\Deals deals()
+ * @method Resources\Emails emails()
  * @method Resources\People people()
  * @method Resources\Tasks tasks()
  * @method Resources\Users users()
