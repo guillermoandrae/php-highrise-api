@@ -18,6 +18,7 @@ use Guillermoandrae\Highrise\Resources\ResourceInterface;
  * @method Resources\Cases cases()
  * @method Resources\Deals deals()
  * @method Resources\Emails emails()
+ * @method Resources\Cases kases()
  * @method Resources\People people()
  * @method Resources\Tasks tasks()
  * @method Resources\Users users()
@@ -71,6 +72,7 @@ final class Client implements ClientInterface
         if (!$client = $this->adapter) {
             $this->setAdapter($this->getDefaultAdapter());
         }
+        $name = ($name == 'kases') ? 'cases' : $name;
         return ResourceFactory::factory($name, $this->getAdapter());
     }
 
