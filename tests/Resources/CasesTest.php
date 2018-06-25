@@ -2,6 +2,8 @@
 
 namespace GuillermoandraeTest\Highrise\Resources;
 
+use GuillermoandraeTest\Highrise\TestCase;
+
 class CasesTest extends TestCase
 {
     public function testFindAll()

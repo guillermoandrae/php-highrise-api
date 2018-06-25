@@ -2,6 +2,8 @@
 
 namespace GuillermoandraeTest\Highrise\Resources;
 
+use GuillermoandraeTest\Highrise\TestCase;
+
 class PeopleTest extends TestCase
 {
     public function testFindByCompanyId()
