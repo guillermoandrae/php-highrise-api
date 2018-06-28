@@ -2,7 +2,10 @@
 
 namespace Guillermoandrae\Highrise\Resources;
 
+use Guillermoandrae\Common\Collection;
 use Guillermoandrae\Common\CollectionInterface;
+use Guillermoandrae\Highrise\Entities\EntityFactory;
+use Guillermoandrae\Highrise\Entities\EntityInterface;
 use Guillermoandrae\Highrise\Helpers\Xml;
 use Guillermoandrae\Highrise\Http\AdapterAwareTrait;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
@@ -34,16 +37,18 @@ abstract class AbstractResource implements ResourceInterface
         }
     }
 
-    public function find($id): array
+    public function find($id): EntityInterface
     {
         $uri = sprintf('/%s/%s.xml', $this->getName(), $id);
-        return $this->getAdapter()->request('GET', $uri);
+        $results = $this->getAdapter()->request('GET', $uri);
+        return $this->hydrate($results);
     }
 
     public function findAll(array $filters = []): CollectionInterface
     {
         $uri = sprintf('/%s.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        $results = $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        return $this->hydrate($results);
     }
 
     public function search(array $criteria = []): CollectionInterface
@@ -57,21 +62,27 @@ abstract class AbstractResource implements ResourceInterface
                 $query[sprintf('criteria[%s]', $key)] = $value;
             }
         }
-        return $this->getAdapter()->request('GET', $uri, ['query' => $query]);
+        $results = $this->getAdapter()->request('GET', $uri, ['query' => $query]);
+        return $this->hydrate($results);
+
     }
 
-    public function create(array $data): array
+    public function create(array $data): EntityInterface
     {
         $uri = sprintf('/%s.xml', $this->getName());
         $body = Xml::toXml(Inflector::get()->singularize($this->getName()), $data);
-        return $this->getAdapter()->request('POST', $uri, ['body' => $body]);
+        $results = $this->getAdapter()->request('POST', $uri, ['body' => $body]);
+        return $this->hydrate($results);
+
     }
 
-    public function update($id, array $data): array
+    public function update($id, array $data): EntityInterface
     {
         $uri = sprintf('/%s/%s.xml?reload=true', $this->getName(), $id);
         $body = Xml::toXml(Inflector::get()->singularize($this->getName()), $data);
-        return $this->getAdapter()->request('PUT', $uri, ['body' => $body]);
+        $results = $this->getAdapter()->request('PUT', $uri, ['body' => $body]);
+        return $this->hydrate($results);
+
     }
 
     public function delete($id): bool
@@ -83,5 +94,21 @@ abstract class AbstractResource implements ResourceInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    protected function hydrate(string $xml)
+    {
+        libxml_use_internal_errors(true);
+        if (!$obj = simplexml_load_string($xml)) {
+            return [];
+        }
+        if ($obj->attributes()) {
+            $items = [];
+            foreach ($obj->children() as $child) {
+                $items[] = $this->hydrate($child);
+            }
+            return Collection::make($items);
+        }
+        return EntityFactory::factory($this->getName(), $xml);
     }
 }

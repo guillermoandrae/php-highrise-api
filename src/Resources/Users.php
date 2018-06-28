@@ -2,6 +2,8 @@
 
 namespace Guillermoandrae\Highrise\Resources;
 
+use Guillermoandrae\Highrise\Entities\EntityInterface;
+
 class Users extends AbstractResource
 {
     use UnsearchableResourceTrait, ReadOnlyResourceTrait;
@@ -9,9 +11,9 @@ class Users extends AbstractResource
     /**
      * Returns the current user's information.
      *
-     * @return array
+     * @return EntityInterface
      */
-    public function me(): array
+    public function me(): EntityInterface
     {
         return $this->getAdapter()->request('GET', '/me.xml');
     }

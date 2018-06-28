@@ -3,6 +3,7 @@
 namespace Guillermoandrae\Highrise\Resources;
 
 use Guillermoandrae\Common\CollectionInterface;
+use Guillermoandrae\Highrise\Entities\EntityInterface;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
 
 interface ResourceInterface
@@ -11,9 +12,9 @@ interface ResourceInterface
      * Finds the resource associated with the provided ID.
      *
      * @param mixed $id  The ID.
-     * @return array
+     * @return EntityInterface
      */
-    public function find($id): array;
+    public function find($id): EntityInterface;
 
     /**
      * Finds resources using the provided filters.
@@ -35,9 +36,9 @@ interface ResourceInterface
      * Creates a new resource using the provided data.
      *
      * @param array $data  The data to use when creating a resource.
-     * @return array
+     * @return EntityInterface
      */
-    public function create(array $data): array;
+    public function create(array $data): EntityInterface;
 
     /**
      * Updates the resource associated with the provided ID using the provided
@@ -45,9 +46,9 @@ interface ResourceInterface
      *
      * @param mixed $id  The ID.
      * @param array $data The data to use when updating a resource.
-     * @return array
+     * @return EntityInterface
      */
-    public function update($id, array $data): array;
+    public function update($id, array $data): EntityInterface;
 
     /**
      * Deletes the resource associated with the provided ID.

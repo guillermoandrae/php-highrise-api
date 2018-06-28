@@ -4,6 +4,7 @@ namespace Guillermoandrae\Highrise\Resources;
 
 use BadMethodCallException;
 use Guillermoandrae\Common\CollectionInterface;
+use Guillermoandrae\Highrise\Entities\EntityInterface;
 
 class Account extends AbstractResource
 {
@@ -14,14 +15,15 @@ class Account extends AbstractResource
     /**
      * Returns account information.
      *
-     * @return array
+     * @return EntityInterface
      */
-    public function show(): array
+    public function show(): EntityInterface
     {
-        return $this->getAdapter()->request('GET', '/account.xml');
+        $result = $this->getAdapter()->request('GET', '/account.xml');
+        return $this->hydrate($result);
     }
 
-    public function find($id): array
+    public function find($id): EntityInterface
     {
         throw new BadMethodCallException(
             'The find method of this resource is not supported.'

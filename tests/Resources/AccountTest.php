@@ -15,7 +15,7 @@ class AccountTest extends TestCase
     public function testShow()
     {
         $account = $this->resource->show();
-        $this->assertSame('test', $account['name']);
+        $this->assertSame('Your Company', $account->getName());
     }
 
     public function testFind()
@@ -38,7 +38,7 @@ class AccountTest extends TestCase
 
     protected function setUp()
     {
-        $client = $this->getMockClient(200, [], '<account><name>test</name></account>');
+        $client = $this->getMockClient(200, [], $this->getAccountXml());
         $this->resource = new Account($this->getAdapter($client));
     }
 }

@@ -40,4 +40,21 @@ class TestCase extends PHPUnitTestCase
         $handler = HandlerStack::create($mock);
         return new Client(['handler' => $handler]);
     }
+
+    protected function getAccountXml(): string
+    {
+        return '<account>
+<id type="integer">1</id>
+  <name>Your Company</name>
+  <subdomain>yourco</subdomain>
+  <plan>premium</plan>
+  <owner-id type="integer"></owner-id>
+  <people-count type="integer">9412</people-count>
+  <storage type="integer">17374444</storage>
+  <color_theme>blue</color_theme>
+  <ssl_enabled>true</ssl_enabled>
+  <created-at type="datetime">2007-01-12T15:00:00Z</created-at>
+  <updated-at type="datetime">2007-01-12T15:00:00Z</updated-at>
+</account>';
+    }
 }

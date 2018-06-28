@@ -3,10 +3,11 @@
 namespace Guillermoandrae\Highrise\Resources;
 
 use BadMethodCallException;
+use Guillermoandrae\Highrise\Entities\EntityInterface;
 
 trait ReadOnlyResourceTrait
 {
-    final public function create(array $options): array
+    final public function create(array $options): EntityInterface
     {
         unset($options);
         throw new BadMethodCallException(
@@ -14,7 +15,7 @@ trait ReadOnlyResourceTrait
         );
     }
 
-    final public function update($id, array $options): array
+    final public function update($id, array $options): EntityInterface
     {
         unset($id, $options);
         throw new BadMethodCallException(

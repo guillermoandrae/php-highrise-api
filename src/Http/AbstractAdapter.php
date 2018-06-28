@@ -52,7 +52,7 @@ abstract class AbstractAdapter implements AdapterInterface
                 return ($this->getLastResponse()->getStatusCode() == 200);
             }
             if ($body = (string) $this->getLastResponse()->getBody()) {
-                return Xml::fromXml($body);
+                return $body;
             }
             return false;
         } catch (BadResponseException $ex) {
