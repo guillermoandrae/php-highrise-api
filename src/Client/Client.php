@@ -16,13 +16,14 @@ use Guillermoandrae\Repositories\RepositoryFactory;
  *
  * @method Repositories\AccountRepository account()
  * @method Repositories\CasesRepository cases()
+ * @method Repositories\CasesRepository kases()
  * @method Repositories\DealsRepository deals()
  * @method Repositories\EmailsRepository emails()
- * @method Repositories\CasesRepository kases()
  * @method Repositories\PeopleRepository people()
  * @method Repositories\TasksRepository tasks()
  * @method Repositories\UsersRepository users()
  *
+ * @see https://github.com/basecamp/highrise-api
  * @author Guillermo A. Fisher <me@guillermoandraefisher.com>
  */
 final class Client implements ClientInterface
@@ -50,7 +51,7 @@ final class Client implements ClientInterface
 
     /**
      * Invoked when non-existent methods are called. Can be used for returning
-     * resources.
+     * API resources.
      *
      * @param string $name The method name.
      * @param array $arguments The method arguments.
@@ -62,7 +63,7 @@ final class Client implements ClientInterface
             return $this->resource($name);
         } catch (\Exception $ex) {
             throw new BadMethodCallException(
-                sprintf('The %s method does not exist.', $name)
+                sprintf('The "%s" method does not exist.', $name)
             );
         }
     }
