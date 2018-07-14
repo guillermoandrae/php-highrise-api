@@ -8,9 +8,9 @@ use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
 interface ClientInterface
 {
     /**
-     * Returns the desired resource.
+     * Returns the desired API resource.
      *
-     * @param string $name  The name of the desired resource.
+     * @param string $name  The name of the desired API resource.
      * @return RepositoryInterface
      */
     public function resource(string $name): RepositoryInterface;
