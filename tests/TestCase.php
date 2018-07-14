@@ -3,8 +3,8 @@
 namespace GuillermoandraeTest\Highrise;
 
 use Guillermoandrae\Highrise\Http\GuzzleAdapter;
-use Guillermoandrae\Highrise\Resources\ResourceFactory;
-use Guillermoandrae\Highrise\Resources\ResourceInterface;
+use Guillermoandrae\Highrise\Repositories\ResourceFactory;
+use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCase extends PHPUnitTestCase
 {
-    protected function assertSameLastRequestUri(string $uri, ResourceInterface $resource)
+    protected function assertSameLastRequestUri(string $uri, RepositoryInterface $resource)
     {
         $this->assertSame($uri, $resource->getAdapter()->getLastRequest()->getUri()->getPath());
     }

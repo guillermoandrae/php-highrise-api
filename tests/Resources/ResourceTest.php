@@ -3,8 +3,8 @@
 namespace GuillermoandraeTest\Highrise\Resources;
 
 use Guillermoandrae\Highrise\Http\AdapterInterface;
-use Guillermoandrae\Highrise\Resources\AbstractResource;
-use Guillermoandrae\Highrise\Resources\ResourceInterface;
+use Guillermoandrae\Highrise\Repositories\AbstractRepository;
+use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class ResourceTest extends TestCase
@@ -74,10 +74,10 @@ class ResourceTest extends TestCase
         $this->assertTrue($resource->delete('123456'));
     }
 
-    private function getResource(AdapterInterface $adapter): ResourceInterface
+    private function getResource(AdapterInterface $adapter): RepositoryInterface
     {
         return $this->getMockForAbstractClass(
-            AbstractResource::class,
+            AbstractRepository::class,
             [$adapter],
             'Tests'
         );

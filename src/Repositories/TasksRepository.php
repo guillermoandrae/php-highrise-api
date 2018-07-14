@@ -1,17 +1,18 @@
 <?php
 
-namespace Guillermoandrae\Highrise\Resources;
+namespace Guillermoandrae\Highrise\Repositories;
 
 use Guillermoandrae\Common\CollectionInterface;
 
-class Tasks extends AbstractRelationalResource
+class TasksRepository extends AbstractRelationalRepository
 {
-    use UnsearchableResourceTrait;
+    use UnsearchableRepositoryTrait;
 
     public function findAll(array $filters = []): CollectionInterface
     {
         $uri = sprintf('/%s/all.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        $results = $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        return $this->hydrate($results);
     }
 
     /**
@@ -22,7 +23,8 @@ class Tasks extends AbstractRelationalResource
     public function findUpcoming(): CollectionInterface
     {
         $uri = sprintf('/%s/upcoming.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri);
+        $results = $this->getAdapter()->request('GET', $uri);
+        return $this->hydrate($results);
     }
 
     /**
@@ -33,7 +35,8 @@ class Tasks extends AbstractRelationalResource
     public function findAssigned(): CollectionInterface
     {
         $uri = sprintf('/%s/assigned.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri);
+        $results = $this->getAdapter()->request('GET', $uri);
+        return $this->hydrate($results);
     }
 
     /**
@@ -44,7 +47,8 @@ class Tasks extends AbstractRelationalResource
     public function findCompleted(): CollectionInterface
     {
         $uri = sprintf('/%s/completed.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri);
+        $results = $this->getAdapter()->request('GET', $uri);
+        return $this->hydrate($results);
     }
 
     /**
@@ -55,6 +59,7 @@ class Tasks extends AbstractRelationalResource
     public function findToday(): CollectionInterface
     {
         $uri = sprintf('/%s/today.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri);
+        $results = $this->getAdapter()->request('GET', $uri);
+        return $this->hydrate($results);
     }
 }

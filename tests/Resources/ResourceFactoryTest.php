@@ -2,8 +2,8 @@
 
 namespace GuillermoandraeTest\Highrise\Resources;
 
-use Guillermoandrae\Highrise\Resources\Account;
-use Guillermoandrae\Highrise\Resources\ResourceFactory;
+use Guillermoandrae\Highrise\Repositories\AccountRepository;
+use Guillermoandrae\Highrise\Repositories\ResourceFactory;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class ResourceFactoryTest extends TestCase
@@ -12,7 +12,7 @@ class ResourceFactoryTest extends TestCase
     {
         $adapter = $this->getAdapter($this->getMockClient(200));
         $resource = ResourceFactory::factory('account', $adapter);
-        $this->assertInstanceOf(Account::class, $resource);
+        $this->assertInstanceOf(AccountRepository::class, $resource);
     }
 
     public function testFactoryWithInvalidResourceName()

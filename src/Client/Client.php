@@ -3,25 +3,25 @@
 namespace Guillermoandrae\Highrise\Client;
 
 use BadMethodCallException;
-use Guillermoandrae\Highrise\Http\GuzzleAdapter;
 use Guillermoandrae\Highrise\Http\AdapterAwareTrait;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
 use Guillermoandrae\Highrise\Http\CredentialsAwareTrait;
-use Guillermoandrae\Highrise\Resources;
-use Guillermoandrae\Highrise\Resources\ResourceFactory;
-use Guillermoandrae\Highrise\Resources\ResourceInterface;
+use Guillermoandrae\Highrise\Http\GuzzleAdapter;
+use Guillermoandrae\Highrise\Repositories;
+use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
+use Guillermoandrae\Repositories\RepositoryFactory;
 
 /**
  * Highrise API Client class.
  *
- * @method Resources\Account account()
- * @method Resources\Cases cases()
- * @method Resources\Deals deals()
- * @method Resources\Emails emails()
- * @method Resources\Cases kases()
- * @method Resources\People people()
- * @method Resources\Tasks tasks()
- * @method Resources\Users users()
+ * @method Repositories\AccountRepository account()
+ * @method Repositories\CasesRepository cases()
+ * @method Repositories\DealsRepository deals()
+ * @method Repositories\EmailsRepository emails()
+ * @method Repositories\CasesRepository kases()
+ * @method Repositories\PeopleRepository people()
+ * @method Repositories\TasksRepository tasks()
+ * @method Repositories\UsersRepository users()
  *
  * @author Guillermo A. Fisher <me@guillermoandraefisher.com>
  */
@@ -67,13 +67,13 @@ final class Client implements ClientInterface
         }
     }
 
-    public function resource(string $name): ResourceInterface
+    public function resource(string $name): RepositoryInterface
     {
         if (!$client = $this->adapter) {
             $this->setAdapter($this->getDefaultAdapter());
         }
         $name = ($name == 'kases') ? 'cases' : $name;
-        return ResourceFactory::factory($name, $this->getAdapter());
+        return RepositoryFactory::factory($name, $this->getAdapter());
     }
 
     public function getDefaultAdapter(): AdapterInterface

@@ -2,7 +2,7 @@
 
 namespace GuillermoandraeTest\Highrise\Entities;
 
-use Guillermoandrae\Highrise\Entities\Account;
+use Guillermoandrae\Highrise\Models\AccountModel;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class AccountTest extends TestCase
@@ -16,6 +16,6 @@ class AccountTest extends TestCase
 
     protected function setUp()
     {
-        $this->entity = new Account($this->getAccountXml());
+        $this->entity = new AccountModel($this->getAccountXml());
     }
 }

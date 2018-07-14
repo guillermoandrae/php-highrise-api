@@ -1,10 +1,10 @@
 <?php
 
-namespace Guillermoandrae\Highrise\Resources;
+namespace Guillermoandrae\Highrise\Repositories;
 
 use Guillermoandrae\Common\CollectionInterface;
 
-abstract class AbstractRelationalResource extends AbstractResource
+abstract class AbstractRelationalRepository extends AbstractRepository
 {
     /**
      * Returns all upcoming tasks assigned to the authenticated user related to
@@ -19,6 +19,7 @@ abstract class AbstractRelationalResource extends AbstractResource
     public function findBy(string $name, $id, array $filters = []): CollectionInterface
     {
         $uri = sprintf('/%s/%s/%s.xml', $name, $id, $this->getName());
-        return $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        $results = $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        return $this->hydrate($results);
     }
 }

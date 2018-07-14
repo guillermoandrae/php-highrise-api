@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ce130db24695cd5d0eacb0ac80c2fe1",
+    "content-hash": "2010961884ca175502ea5c4b5ce35fb9",
     "packages": [
         {
             "name": "guillermoandrae/php-collection",
@@ -92,6 +92,43 @@
             ],
             "description": "PHP Debug library",
             "time": "2018-06-04T02:32:48+00:00"
+        },
+        {
+            "name": "guillermoandrae/php-repository",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guillermoandrae/php-repository.git",
+                "reference": "8cf9c50c7c7f4c08190b3232df77e21e706e7a2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guillermoandrae/php-repository/zipball/8cf9c50c7c7f4c08190b3232df77e21e706e7a2a",
+                "reference": "8cf9c50c7c7f4c08190b3232df77e21e706e7a2a",
+                "shasum": ""
+            },
+            "require": {
+                "guillermoandrae/php-collection": "^0.1.0",
+                "guillermoandrae/php-debug": "^0.1.0",
+                "icanboogie/inflector": "^1.4",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1",
+                "squizlabs/php_codesniffer": "^3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Guillermoandrae\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP library that implements the Repository pattern.",
+            "time": "2018-07-09T19:09:06+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1048,16 +1085,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.2.4",
+            "version": "7.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd"
+                "reference": "400a3836ee549ae6f665323ac3f21e27eac7155f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
-                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/400a3836ee549ae6f665323ac3f21e27eac7155f",
+                "reference": "400a3836ee549ae6f665323ac3f21e27eac7155f",
                 "shasum": ""
             },
             "require": {
@@ -1073,7 +1110,7 @@
                 "php": "^7.1",
                 "phpspec/prophecy": "^1.7",
                 "phpunit/php-code-coverage": "^6.0.7",
-                "phpunit/php-file-iterator": "^2.0",
+                "phpunit/php-file-iterator": "^2.0.1",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^2.0",
                 "sebastian/comparator": "^3.0",
@@ -1128,7 +1165,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-06-05T03:40:05+00:00"
+            "time": "2018-06-21T13:13:39+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

@@ -2,13 +2,13 @@
 
 namespace GuillermoandraeTest\Highrise\Resources;
 
-use Guillermoandrae\Highrise\Resources\ReadOnlyResourceTrait;
+use Guillermoandrae\Highrise\Repositories\ReadOnlyRepositoryTrait;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class ReadOnlyResourceTraitTest extends TestCase
 {
     /**
-     * @var ReadOnlyResourceTrait
+     * @var ReadOnlyRepositoryTrait
      */
     private $resource;
 
@@ -32,6 +32,6 @@ class ReadOnlyResourceTraitTest extends TestCase
 
     protected function setUp()
     {
-        $this->resource = $this->getMockForTrait(ReadOnlyResourceTrait::class);
+        $this->resource = $this->getMockForTrait(ReadOnlyRepositoryTrait::class);
     }
 }

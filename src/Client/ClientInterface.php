@@ -3,7 +3,7 @@
 namespace Guillermoandrae\Highrise\Client;
 
 use Guillermoandrae\Highrise\Http\AdapterInterface;
-use Guillermoandrae\Highrise\Resources\ResourceInterface;
+use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
 
 interface ClientInterface
 {
@@ -11,9 +11,9 @@ interface ClientInterface
      * Returns the desired resource.
      *
      * @param string $name  The name of the desired resource.
-     * @return ResourceInterface
+     * @return RepositoryInterface
      */
-    public function resource(string $name): ResourceInterface;
+    public function resource(string $name): RepositoryInterface;
 
     /**
      * When no default adapter is explicitly registered, this method will

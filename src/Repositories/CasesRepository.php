@@ -1,13 +1,13 @@
 <?php
 
-namespace Guillermoandrae\Highrise\Resources;
+namespace Guillermoandrae\Highrise\Repositories;
 
 use Guillermoandrae\Common\Collection;
 use Guillermoandrae\Common\CollectionInterface;
 
-final class Cases extends AbstractResource
+final class CasesRepository extends AbstractRepository
 {
-    use UnsearchableResourceTrait;
+    use UnsearchableRepositoryTrait;
 
     protected $name = 'kases';
 
@@ -24,7 +24,8 @@ final class Cases extends AbstractResource
     public function findOpen(): CollectionInterface
     {
         $uri = sprintf('/%s/open.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri);
+        $results = $this->getAdapter()->request('GET', $uri);
+        return $this->hydrate($results);
     }
 
     /**
@@ -35,6 +36,7 @@ final class Cases extends AbstractResource
     public function findClosed(): CollectionInterface
     {
         $uri = sprintf('/%s/closed.xml', $this->getName());
-        return $this->getAdapter()->request('GET', $uri);
+        $results = $this->getAdapter()->request('GET', $uri);
+        return $this->hydrate($results);
     }
 }

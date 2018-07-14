@@ -1,9 +1,16 @@
 <?php
 
-namespace Guillermoandrae\Highrise\Entities;
+namespace Guillermoandrae\Highrise\Models;
 
-class Account extends AbstractEntity
+final class AccountModel extends AbstractModel
 {
+    /**
+     * The ID.
+     *
+     * @var integer
+     */
+    protected $id;
+
     /**
      * The account subdomain.
      *
@@ -62,6 +69,16 @@ class Account extends AbstractEntity
         $this->peopleCount = (int) $this->getXml()->xpath('//people-count')[0];
         $this->storage = (int) $this->getXml()->xpath('//storage')[0];
         $this->colorTheme = (string) $this->getXml()->xpath('//color_theme')[0];
+    }
+
+    /**
+     * Returns the ID.
+     *
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**

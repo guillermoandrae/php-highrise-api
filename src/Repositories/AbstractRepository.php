@@ -1,17 +1,17 @@
 <?php
 
-namespace Guillermoandrae\Highrise\Resources;
+namespace Guillermoandrae\Highrise\Repositories;
 
 use Guillermoandrae\Common\Collection;
 use Guillermoandrae\Common\CollectionInterface;
-use Guillermoandrae\Highrise\Entities\EntityFactory;
-use Guillermoandrae\Highrise\Entities\EntityInterface;
+use Guillermoandrae\Repositories\AbstractRepository as BaseAbstractRepository;
+use Guillermoandrae\Models\ModelInterface as BaseModelInterface;
 use Guillermoandrae\Highrise\Helpers\Xml;
 use Guillermoandrae\Highrise\Http\AdapterAwareTrait;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
 use ICanBoogie\Inflector;
 
-abstract class AbstractResource implements ResourceInterface
+abstract class AbstractRepository extends BaseAbstractRepository implements RepositoryInterface
 {
     use AdapterAwareTrait;
 
@@ -21,6 +21,13 @@ abstract class AbstractResource implements ResourceInterface
      * @var string
      */
     protected $name;
+
+    /**
+     * The name of the associated model.
+     *
+     * @var string
+     */
+    protected $modelName;
 
     /**
      * Builds the resource object.
@@ -37,17 +44,24 @@ abstract class AbstractResource implements ResourceInterface
         }
     }
 
-    public function find($id): EntityInterface
+    public function findById($id): BaseModelInterface
     {
         $uri = sprintf('/%s/%s.xml', $this->getName(), $id);
         $results = $this->getAdapter()->request('GET', $uri);
         return $this->hydrate($results);
     }
 
-    public function findAll(array $filters = []): CollectionInterface
+    public function findWhere(array $where, int $offset = 0, int $limit = null): CollectionInterface
     {
         $uri = sprintf('/%s.xml', $this->getName());
-        $results = $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        $results = $this->getAdapter()->request('GET', $uri, ['query' => $where]);
+        return $this->hydrate($results);
+    }
+
+    public function findAll(int $offset = 0, int $limit = null): CollectionInterface
+    {
+        $uri = sprintf('/%s.xml', $this->getName());
+        $results = $this->getAdapter()->request('GET', $uri);
         return $this->hydrate($results);
     }
 
@@ -67,7 +81,7 @@ abstract class AbstractResource implements ResourceInterface
 
     }
 
-    public function create(array $data): EntityInterface
+    public function create(array $data): BaseModelInterface
     {
         $uri = sprintf('/%s.xml', $this->getName());
         $body = Xml::toXml(Inflector::get()->singularize($this->getName()), $data);
@@ -76,7 +90,7 @@ abstract class AbstractResource implements ResourceInterface
 
     }
 
-    public function update($id, array $data): EntityInterface
+    public function update($id, array $data): BaseModelInterface
     {
         $uri = sprintf('/%s/%s.xml?reload=true', $this->getName(), $id);
         $body = Xml::toXml(Inflector::get()->singularize($this->getName()), $data);
@@ -91,9 +105,14 @@ abstract class AbstractResource implements ResourceInterface
         return $this->getAdapter()->request('DELETE', $uri);
     }
 
-    public function getName(): string
+    final public function getName(): string
     {
         return $this->name;
+    }
+
+    final public function getModelName(): string
+    {
+        return $this->modelName;
     }
 
     protected function hydrate(string $xml)
@@ -109,6 +128,6 @@ abstract class AbstractResource implements ResourceInterface
             }
             return Collection::make($items);
         }
-        return EntityFactory::factory($this->getName(), $xml);
+        return new $this->getModelName()
     }
 }

@@ -6,9 +6,10 @@
     "require": {
         "php": "^7.1",
         "icanboogie/inflector": "^1.4",
-        "guillermoandrae/php-debug": "^0.1.0",
         "guzzlehttp/guzzle": "^6.3",
-        "guillermoandrae/php-collection": "^0.1.0"
+        "guillermoandrae/php-debug": "^0.1.0",
+        "guillermoandrae/php-collection": "^0.1.0",
+        "guillermoandrae/php-repository": "^1.0"
     },
     "autoload": {
         "psr-4": {

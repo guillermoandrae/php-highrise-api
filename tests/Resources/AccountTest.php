@@ -2,13 +2,13 @@
 
 namespace GuillermoandraeTest\Highrise\Resources;
 
-use Guillermoandrae\Highrise\Resources\Account;
+use Guillermoandrae\Highrise\Repositories\AccountRepository;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class AccountTest extends TestCase
 {
     /**
-     * @var Account
+     * @var AccountRepository
      */
     private $resource;
 
@@ -39,6 +39,6 @@ class AccountTest extends TestCase
     protected function setUp()
     {
         $client = $this->getMockClient(200, [], $this->getAccountXml());
-        $this->resource = new Account($this->getAdapter($client));
+        $this->resource = new AccountRepository($this->getAdapter($client));
     }
 }

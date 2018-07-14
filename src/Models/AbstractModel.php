@@ -1,23 +1,17 @@
 <?php
 
-namespace Guillermoandrae\Highrise\Entities;
+namespace Guillermoandrae\Highrise\Models;
 
 use DateTime;
 use SimpleXMLElement;
+use Guillermoandrae\Models\AbstractModel as BaseAbstractModel;
 
-abstract class AbstractEntity implements EntityInterface
+abstract class AbstractModel extends BaseAbstractModel implements ModelInterface
 {
     /**
      * @var SimpleXMLElement
      */
     protected $xml;
-
-    /**
-     * The entity ID.
-     *
-     * @var int
-     */
-    protected $id;
 
     /**
      * The entity name.
@@ -60,16 +54,6 @@ abstract class AbstractEntity implements EntityInterface
     }
 
     /**
-     * Returns the entity ID.
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
      * Returns the entity name;
      *
      * @return string
@@ -97,5 +81,10 @@ abstract class AbstractEntity implements EntityInterface
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function toArray(): array
+    {
+        return [];
     }
 }
