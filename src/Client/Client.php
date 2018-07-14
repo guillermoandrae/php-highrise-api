@@ -63,7 +63,7 @@ final class Client implements ClientInterface
             return $this->resource($name);
         } catch (\Exception $ex) {
             throw new BadMethodCallException(
-                sprintf('The "%s" method does not exist.', $name)
+                sprintf('The %s method does not exist.', $name)
             );
         }
     }
