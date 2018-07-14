@@ -3,6 +3,7 @@
 namespace Guillermoandrae\Highrise\Repositories;
 
 use Guillermoandrae\Highrise\Models\ModelInterface;
+use Guillermoandrae\Repositories\ReadOnlyRepositoryTrait;
 
 class UsersRepository extends AbstractRepository
 {

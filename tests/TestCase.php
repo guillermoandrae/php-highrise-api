@@ -3,8 +3,8 @@
 namespace GuillermoandraeTest\Highrise;
 
 use Guillermoandrae\Highrise\Http\GuzzleAdapter;
-use Guillermoandrae\Highrise\Repositories\ResourceFactory;
 use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
+use Guillermoandrae\Repositories\RepositoryFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -22,7 +22,8 @@ class TestCase extends PHPUnitTestCase
     {
         $client = $this->getMockClient(200, [], $expectedBody);
         $adapter = $this->getAdapter($client);
-        return ResourceFactory::factory($name, $adapter);
+        RepositoryFactory::setNamespace('Guillermoandrae\Highrise\Repositories');
+        return RepositoryFactory::factory($name, $adapter);
     }
 
     protected function getAdapter(Client $client): GuzzleAdapter
@@ -41,20 +42,9 @@ class TestCase extends PHPUnitTestCase
         return new Client(['handler' => $handler]);
     }
 
-    protected function getAccountXml(): string
+    protected function getMockModel(string $name): string
     {
-        return '<account>
-<id type="integer">1</id>
-  <name>Your Company</name>
-  <subdomain>yourco</subdomain>
-  <plan>premium</plan>
-  <owner-id type="integer"></owner-id>
-  <people-count type="integer">9412</people-count>
-  <storage type="integer">17374444</storage>
-  <color_theme>blue</color_theme>
-  <ssl_enabled>true</ssl_enabled>
-  <created-at type="datetime">2007-01-12T15:00:00Z</created-at>
-  <updated-at type="datetime">2007-01-12T15:00:00Z</updated-at>
-</account>';
+        $path = sprintf('%s/Mocks/%s.xml', __DIR__, $name);
+        return file_get_contents($path);
     }
 }

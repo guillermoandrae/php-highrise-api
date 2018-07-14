@@ -1,21 +1,21 @@
 <?php
 
-namespace GuillermoandraeTest\Highrise\Entities;
+namespace GuillermoandraeTest\Highrise\Models;
 
 use Guillermoandrae\Highrise\Models\AccountModel;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class AccountTest extends TestCase
 {
-    private $entity;
+    private $model;
 
     public function testGetName()
     {
-        $this->assertSame('Your Company', $this->entity->getName());
+        $this->assertSame('Your Company', $this->model->getName());
     }
 
     protected function setUp()
     {
-        $this->entity = new AccountModel($this->getAccountXml());
+        $this->model = new AccountModel($this->getMockModel('account'));
     }
 }

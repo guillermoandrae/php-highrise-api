@@ -1,0 +1,18 @@
+<task>
+    <id type="integer">1</id>
+    <recording-id type="integer"></recording-id>
+    <subject-id type="integer"></subject-id>
+    <subject-type></subject-type>
+    <subject-name></subject-name>
+    <category-id type="integer"></category-id>
+    <body>A task for today</body>
+    <frame>today</frame>
+    <due-at type="datetime"></due-at>
+    <alert-at type="datetime"></alert-at>
+    <created-at type="datetime"></created-at>
+    <author-id type="integer">1</author-id>
+    <updated-at type="datetime"></updated-at>
+    <public type="boolean">false</public>
+    <recurring-period nil="true"/>
+    <anchor-type type="integer">0</anchor-type>
+</task>

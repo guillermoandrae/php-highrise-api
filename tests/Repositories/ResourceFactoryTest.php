@@ -1,6 +1,6 @@
 <?php
 
-namespace GuillermoandraeTest\Highrise\Resources;
+namespace GuillermoandraeTest\Highrise\Repositories;
 
 use Guillermoandrae\Highrise\Repositories\AccountRepository;
 use Guillermoandrae\Highrise\Repositories\ResourceFactory;

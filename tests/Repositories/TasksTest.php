@@ -1,6 +1,6 @@
 <?php
 
-namespace GuillermoandraeTest\Highrise\Resources;
+namespace GuillermoandraeTest\Highrise\Repositories;
 
 use GuillermoandraeTest\Highrise\TestCase;
 

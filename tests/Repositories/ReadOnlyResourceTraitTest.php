@@ -1,6 +1,6 @@
 <?php
 
-namespace GuillermoandraeTest\Highrise\Resources;
+namespace GuillermoandraeTest\Highrise\Repositories;
 
 use Guillermoandrae\Highrise\Repositories\ReadOnlyRepositoryTrait;
 use GuillermoandraeTest\Highrise\TestCase;

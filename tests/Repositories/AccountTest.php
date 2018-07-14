@@ -1,6 +1,6 @@
 <?php
 
-namespace GuillermoandraeTest\Highrise\Resources;
+namespace GuillermoandraeTest\Highrise\Repositories;
 
 use Guillermoandrae\Highrise\Repositories\AccountRepository;
 use GuillermoandraeTest\Highrise\TestCase;
@@ -20,25 +20,29 @@ class AccountTest extends TestCase
 
     public function testFind()
     {
-        $this->expectExceptionMessage('The find method of this resource is not supported');
+        $this->expectExceptionMessage('The findById method of this repository is not supported');
         $this->resource->find('test');
     }
 
     public function testFindAll()
     {
-        $this->expectExceptionMessage('The findAll method of this resource is not supported');
+        $this->expectExceptionMessage('The findAll method of this repository is not supported');
         $this->resource->findAll();
     }
 
     public function testSearch()
     {
-        $this->expectExceptionMessage('The search method of this resource is not supported');
+        $this->expectExceptionMessage('The search method of this repository is not supported');
         $this->resource->search();
     }
 
     protected function setUp()
     {
-        $client = $this->getMockClient(200, [], $this->getAccountXml());
+        $client = $this->getMockClient(
+            200,
+            [],
+            $this->getMockModel('account')
+        );
         $this->resource = new AccountRepository($this->getAdapter($client));
     }
 }

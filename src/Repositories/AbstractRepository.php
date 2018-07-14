@@ -4,6 +4,7 @@ namespace Guillermoandrae\Highrise\Repositories;
 
 use Guillermoandrae\Common\Collection;
 use Guillermoandrae\Common\CollectionInterface;
+use Guillermoandrae\Highrise\Models\ModelFactory;
 use Guillermoandrae\Repositories\AbstractRepository as BaseAbstractRepository;
 use Guillermoandrae\Models\ModelInterface as BaseModelInterface;
 use Guillermoandrae\Highrise\Helpers\Xml;
@@ -41,6 +42,9 @@ abstract class AbstractRepository extends BaseAbstractRepository implements Repo
             $this->name = strtolower(
                 str_replace(__NAMESPACE__ . '\\', '', get_class($this))
             );
+        }
+        if (!$this->modelName) {
+            $this->modelName = $this->name;
         }
     }
 
@@ -128,6 +132,6 @@ abstract class AbstractRepository extends BaseAbstractRepository implements Repo
             }
             return Collection::make($items);
         }
-        return new $this->getModelName()
+        return ModelFactory::factory($this->getModelName(), $xml);
     }
 }
