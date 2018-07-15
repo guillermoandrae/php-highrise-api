@@ -18,6 +18,7 @@ final class ModelFactory
     public static function factory(string $name, string $xml): ModelInterface
     {
         try {
+            $name = $name == 'kases' ? 'case' : $name;
             $className = sprintf(
                 '%s\%sModel',
                 __NAMESPACE__,

@@ -9,7 +9,7 @@ class TasksTest extends TestCase
     public function testFindAll()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
-        $resource = $this->getMockResource('tasks', $body);
+        $resource = $this->getMockRepository('tasks', $body);
         $resource->findAll();
         $this->assertSameLastRequestUri('/tasks/all.xml', $resource);
     }
@@ -17,7 +17,7 @@ class TasksTest extends TestCase
     public function testFindBy()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
-        $resource = $this->getMockResource('tasks', $body);
+        $resource = $this->getMockRepository('tasks', $body);
         $resource->findBy('people', 3);
         $this->assertSameLastRequestUri('/people/3/tasks.xml', $resource);
     }
@@ -25,7 +25,7 @@ class TasksTest extends TestCase
     public function testFindUpcoming()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
-        $resource = $this->getMockResource('tasks', $body);
+        $resource = $this->getMockRepository('tasks', $body);
         $resource->findUpcoming();
         $this->assertSameLastRequestUri('/tasks/upcoming.xml', $resource);
     }
@@ -33,7 +33,7 @@ class TasksTest extends TestCase
     public function testFindAssigned()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
-        $resource = $this->getMockResource('tasks', $body);
+        $resource = $this->getMockRepository('tasks', $body);
         $resource->findAssigned();
         $this->assertSameLastRequestUri('/tasks/assigned.xml', $resource);
     }
@@ -41,7 +41,7 @@ class TasksTest extends TestCase
     public function testFindCompleted()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
-        $resource = $this->getMockResource('tasks', $body);
+        $resource = $this->getMockRepository('tasks', $body);
         $resource->findCompleted();
         $this->assertSameLastRequestUri('/tasks/completed.xml', $resource);
     }
@@ -49,7 +49,7 @@ class TasksTest extends TestCase
     public function testFindToday()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
-        $resource = $this->getMockResource('tasks', $body);
+        $resource = $this->getMockRepository('tasks', $body);
         $resource->findToday();
         $this->assertSameLastRequestUri('/tasks/today.xml', $resource);
     }

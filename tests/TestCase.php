@@ -2,6 +2,7 @@
 
 namespace GuillermoandraeTest\Highrise;
 
+use Guillermoandrae\Common\CollectionInterface;
 use Guillermoandrae\Highrise\Http\GuzzleAdapter;
 use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
 use Guillermoandrae\Repositories\RepositoryFactory;
@@ -18,7 +19,7 @@ class TestCase extends PHPUnitTestCase
         $this->assertSame($uri, $resource->getAdapter()->getLastRequest()->getUri()->getPath());
     }
 
-    protected function getMockResource(string $name, string $expectedBody)
+    protected function getMockRepository(string $name, string $expectedBody)
     {
         $client = $this->getMockClient(200, [], $expectedBody);
         $adapter = $this->getAdapter($client);
@@ -40,6 +41,16 @@ class TestCase extends PHPUnitTestCase
         ]);
         $handler = HandlerStack::create($mock);
         return new Client(['handler' => $handler]);
+    }
+
+    protected function getMockModels(string $name, $count = 2): string
+    {
+        $models = '<mock type="array">';
+        for ($index = 0; $index < $count; $index++) {
+            $models .= $this->getMockModel($name);
+        }
+        $models .= '</mock>';
+        return $models;
     }
 
     protected function getMockModel(string $name): string

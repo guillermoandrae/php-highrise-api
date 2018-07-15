@@ -7,7 +7,7 @@ use Guillermoandrae\Highrise\Repositories\AbstractRepository;
 use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
 use GuillermoandraeTest\Highrise\TestCase;
 
-class ResourceTest extends TestCase
+class RepositoryTest extends TestCase
 {
     public function testFind()
     {

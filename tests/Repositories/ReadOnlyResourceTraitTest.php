@@ -2,7 +2,7 @@
 
 namespace GuillermoandraeTest\Highrise\Repositories;
 
-use Guillermoandrae\Highrise\Repositories\ReadOnlyRepositoryTrait;
+use Guillermoandrae\Repositories\ReadOnlyRepositoryTrait;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class ReadOnlyResourceTraitTest extends TestCase

@@ -40,7 +40,7 @@ abstract class AbstractRepository extends BaseAbstractRepository implements Repo
         $this->setAdapter($adapter);
         if (!$this->name) {
             $this->name = strtolower(
-                str_replace(__NAMESPACE__ . '\\', '', get_class($this))
+                str_replace([__NAMESPACE__ . '\\', 'Repository'], '', get_class($this))
             );
         }
         if (!$this->modelName) {
@@ -132,6 +132,6 @@ abstract class AbstractRepository extends BaseAbstractRepository implements Repo
             }
             return Collection::make($items);
         }
-        return ModelFactory::factory($this->getModelName(), $xml);
+        return ModelFactory::factory(Inflector::get()->singularize($this->getModelName()), $xml);
     }
 }

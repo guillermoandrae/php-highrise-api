@@ -16,7 +16,6 @@ use Guillermoandrae\Repositories\RepositoryFactory;
  *
  * @method Repositories\AccountRepository account()
  * @method Repositories\CasesRepository cases()
- * @method Repositories\CasesRepository kases()
  * @method Repositories\DealsRepository deals()
  * @method Repositories\EmailsRepository emails()
  * @method Repositories\PeopleRepository people()
@@ -73,7 +72,6 @@ final class Client implements ClientInterface
         if (!$client = $this->adapter) {
             $this->setAdapter($this->getDefaultAdapter());
         }
-        $name = ($name == 'kases') ? 'cases' : $name;
         return RepositoryFactory::factory($name, $this->getAdapter());
     }
 

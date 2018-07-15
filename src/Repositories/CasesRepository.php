@@ -11,7 +11,7 @@ final class CasesRepository extends AbstractRepository
 
     protected $name = 'kases';
 
-    public function findAll(array $filters = []): CollectionInterface
+    public function findAll(int $offset = 0, int $limit = null): CollectionInterface
     {
         return $this->findOpen();
     }
