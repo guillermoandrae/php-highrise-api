@@ -16,6 +16,6 @@ class AccountTest extends TestCase
 
     protected function setUp()
     {
-        $this->model = new AccountModel($this->getMockModel('account'));
+        $this->model = new AccountModel($this->getMockModelXml('account'));
     }
 }

@@ -43,17 +43,17 @@ class TestCase extends PHPUnitTestCase
         return new Client(['handler' => $handler]);
     }
 
-    protected function getMockModels(string $name, $count = 2): string
+    protected function getMockModelsXml(string $name, $count = 2): string
     {
         $models = '<mock type="array">';
         for ($index = 0; $index < $count; $index++) {
-            $models .= $this->getMockModel($name);
+            $models .= $this->getMockModelXml($name);
         }
         $models .= '</mock>';
         return $models;
     }
 
-    protected function getMockModel(string $name): string
+    protected function getMockModelXml(string $name): string
     {
         $path = sprintf('%s/Mocks/%s.xml', __DIR__, $name);
         return file_get_contents($path);

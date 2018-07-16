@@ -8,7 +8,7 @@ class CasesTest extends TestCase
 {
     public function testFindAll()
     {
-        $body = $this->getMockModels('case');
+        $body = $this->getMockModelsXml('case');
         $resource = $this->getMockRepository('cases', $body);
         $results = $resource->findAll();
         $this->assertSameLastRequestUri('/kases/open.xml', $resource);
@@ -17,7 +17,7 @@ class CasesTest extends TestCase
 
     public function testFindOpen()
     {
-        $body = $this->getMockModels('case');
+        $body = $this->getMockModelsXml('case');
         $resource = $this->getMockRepository('cases', $body);
         $results = $resource->findOpen();
         $this->assertSameLastRequestUri('/kases/open.xml', $resource);
@@ -26,7 +26,7 @@ class CasesTest extends TestCase
 
     public function testFindClosed()
     {
-        $body = $this->getMockModels('case');
+        $body = $this->getMockModelsXml('case');
         $resource = $this->getMockRepository('cases', $body);
         $results = $resource->findClosed();
         $this->assertSameLastRequestUri('/kases/closed.xml', $resource);

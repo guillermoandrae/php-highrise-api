@@ -41,7 +41,7 @@ class AccountTest extends TestCase
         $client = $this->getMockClient(
             200,
             [],
-            $this->getMockModel('account')
+            $this->getMockModelXml('account')
         );
         $this->resource = new AccountRepository($this->getAdapter($client));
     }
