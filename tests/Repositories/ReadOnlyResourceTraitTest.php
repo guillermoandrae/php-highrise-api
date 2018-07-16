@@ -14,19 +14,19 @@ class ReadOnlyResourceTraitTest extends TestCase
 
     public function testCreate()
     {
-        $this->expectExceptionMessage('The create method of this resource is not supported');
+        $this->expectExceptionMessage('The create method of this repository is not supported');
         $this->resource->create([]);
     }
 
     public function testUpdate()
     {
-        $this->expectExceptionMessage('The update method of this resource is not supported');
+        $this->expectExceptionMessage('The update method of this repository is not supported');
         $this->resource->update('test', []);
     }
 
     public function testDelete()
     {
-        $this->expectExceptionMessage('The delete method of this resource is not supported');
+        $this->expectExceptionMessage('The delete method of this repository is not supported');
         $this->resource->delete('test');
     }
 
