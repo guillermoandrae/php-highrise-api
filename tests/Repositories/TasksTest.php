@@ -48,7 +48,7 @@ class TasksTest extends TestCase
 
     public function testFindToday()
     {
-        $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
+        $body = $this->getMockModelsXml('task');
         $repository = $this->getMockRepository('tasks', $body);
         $repository->findToday();
         $this->assertSameLastRequestUri('/tasks/today.xml', $repository);
