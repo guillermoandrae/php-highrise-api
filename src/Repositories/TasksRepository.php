@@ -8,10 +8,10 @@ class TasksRepository extends AbstractRelationalRepository
 {
     use UnsearchableRepositoryTrait;
 
-    public function findAll(array $filters = []): CollectionInterface
+    public function findAll(int $offset = 0, int $limit = null): CollectionInterface
     {
         $uri = sprintf('/%s/all.xml', $this->getName());
-        $results = $this->getAdapter()->request('GET', $uri, ['query' => $filters]);
+        $results = $this->getAdapter()->request('GET', $uri);
         return $this->hydrate($results);
     }
 
