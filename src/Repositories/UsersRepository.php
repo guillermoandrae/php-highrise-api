@@ -7,7 +7,9 @@ use Guillermoandrae\Repositories\ReadOnlyRepositoryTrait;
 
 class UsersRepository extends AbstractRepository
 {
-    use UnsearchableRepositoryTrait, ReadOnlyRepositoryTrait;
+    use UnsearchableRepositoryTrait, ReadOnlyRepositoryTrait {
+        UnsearchableRepositoryTrait::callUnsupportedMethod insteadof ReadOnlyRepositoryTrait;
+    }
 
     /**
      * Returns the current user's information.
