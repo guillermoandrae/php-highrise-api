@@ -11,6 +11,6 @@ class UnsearchableResourceTraitTest extends TestCase
     {
         $this->expectExceptionMessage('The search method of this repository is not supported');
         $repository = $this->getMockForTrait(UnsearchableRepositoryTrait::class);
-        $resource->search();
+        $repository->search();
     }
 }

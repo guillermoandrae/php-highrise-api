@@ -14,9 +14,9 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCase extends PHPUnitTestCase
 {
-    protected function assertSameLastRequestUri(string $uri, RepositoryInterface $resource)
+    protected function assertSameLastRequestUri(string $uri, RepositoryInterface $repository)
     {
-        $this->assertSame($uri, $resource->getAdapter()->getLastRequest()->getUri()->getPath());
+        $this->assertSame($uri, $repository->getAdapter()->getLastRequest()->getUri()->getPath());
     }
 
     protected function getMockRepository(string $name, string $expectedBody)

@@ -11,7 +11,7 @@ class PeopleTest extends TestCase
         $id = 10;
         $body = '<people type="array"><person>1</person></people>';
         $repository = $this->getMockRepository('people', $body);
-        $resource->findByCompanyId($id);
-        $this->assertSameLastRequestUri("/companies/$id/people.xml", $resource);
+        $repository->findByCompanyId($id);
+        $this->assertSameLastRequestUri("/companies/$id/people.xml", $repository);
     }
 }

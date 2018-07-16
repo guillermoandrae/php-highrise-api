@@ -10,7 +10,7 @@ class ReadOnlyResourceTraitTest extends TestCase
     /**
      * @var ReadOnlyRepositoryTrait
      */
-    private $resource;
+    private $repository;
 
     public function testCreate()
     {

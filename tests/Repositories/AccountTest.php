@@ -10,7 +10,7 @@ class AccountTest extends TestCase
     /**
      * @var AccountRepository
      */
-    private $resource;
+    private $repository;
 
     public function testShow()
     {

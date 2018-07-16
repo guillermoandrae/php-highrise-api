@@ -8,49 +8,49 @@ class TasksTest extends TestCase
 {
     public function testFindAll()
     {
-        $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
+        $body = $this->getMockModelsXml('task');
         $repository = $this->getMockRepository('tasks', $body);
-        $resource->findAll();
-        $this->assertSameLastRequestUri('/tasks/all.xml', $resource);
+        $repository->findAll();
+        $this->assertSameLastRequestUri('/tasks/all.xml', $repository);
     }
 
     public function testFindBy()
     {
-        $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
+        $body = $this->getMockModelsXml('task');
         $repository = $this->getMockRepository('tasks', $body);
-        $resource->findBy('people', 3);
-        $this->assertSameLastRequestUri('/people/3/tasks.xml', $resource);
+        $repository->findBy('people', 3);
+        $this->assertSameLastRequestUri('/people/3/tasks.xml', $repository);
     }
 
     public function testFindUpcoming()
     {
-        $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
+        $body = $this->getMockModelsXml('task');
         $repository = $this->getMockRepository('tasks', $body);
-        $resource->findUpcoming();
-        $this->assertSameLastRequestUri('/tasks/upcoming.xml', $resource);
+        $repository->findUpcoming();
+        $this->assertSameLastRequestUri('/tasks/upcoming.xml', $repository);
     }
 
     public function testFindAssigned()
     {
-        $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
+        $body = $this->getMockModelsXml('task');
         $repository = $this->getMockRepository('tasks', $body);
-        $resource->findAssigned();
-        $this->assertSameLastRequestUri('/tasks/assigned.xml', $resource);
+        $repository->findAssigned();
+        $this->assertSameLastRequestUri('/tasks/assigned.xml', $repository);
     }
 
     public function testFindCompleted()
     {
-        $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
+        $body = $this->getMockModelsXml('task');
         $repository = $this->getMockRepository('tasks', $body);
-        $resource->findCompleted();
-        $this->assertSameLastRequestUri('/tasks/completed.xml', $resource);
+        $repository->findCompleted();
+        $this->assertSameLastRequestUri('/tasks/completed.xml', $repository);
     }
 
     public function testFindToday()
     {
         $body = '<tasks type="array"><task><id>1</id></task><task><id>2</id></task></tasks>';
         $repository = $this->getMockRepository('tasks', $body);
-        $resource->findToday();
-        $this->assertSameLastRequestUri('/tasks/today.xml', $resource);
+        $repository->findToday();
+        $this->assertSameLastRequestUri('/tasks/today.xml', $repository);
     }
 }

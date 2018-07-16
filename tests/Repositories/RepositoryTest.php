@@ -15,7 +15,7 @@ class RepositoryTest extends TestCase
         $expectedBody = sprintf('<test><id>%s</id></test>', $id);
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
-        $item = $resource->find($id);
+        $item = $repository->find($id);
         $this->assertEquals($id, $item['id']);
     }
 
@@ -24,7 +24,7 @@ class RepositoryTest extends TestCase
         $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
-        $this->assertCount(2, $resource->findAll());
+        $this->assertCount(2, $repository->findAll());
     }
 
     public function testSearchWithTerm()
@@ -32,8 +32,8 @@ class RepositoryTest extends TestCase
         $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
-        $resource->search(['term' => 'test']);
-        $actualQuery = $resource->getAdapter()->getLastRequest()->getUri()->getQuery();
+        $repository->search(['term' => 'test']);
+        $actualQuery = $repository->getAdapter()->getLastRequest()->getUri()->getQuery();
         $this->assertSame(http_build_query(['term' => 'test']), $actualQuery);
     }
 
@@ -42,8 +42,8 @@ class RepositoryTest extends TestCase
         $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
-        $resource->search(['test' => 'test']);
-        $actualQuery = $resource->getAdapter()->getLastRequest()->getUri()->getQuery();
+        $repository->search(['test' => 'test']);
+        $actualQuery = $repository->getAdapter()->getLastRequest()->getUri()->getQuery();
         $this->assertSame(http_build_query(['criteria[test]' => 'test']), $actualQuery);
     }
 
@@ -52,9 +52,9 @@ class RepositoryTest extends TestCase
         $expectedBody = '<test><name>test</name></test>';
         $adapter = $this->getAdapter($this->getMockClient(201, [], $expectedBody));
         $repository = $this->getResource($adapter);
-        $results = $resource->create(['name' => 'test']);
+        $results = $repository->create(['name' => 'test']);
         $this->assertArrayHasKey('name', $results);
-        $this->assertSame($expectedBody, (string) $resource->getAdapter()->getLastRequest()->getBody());
+        $this->assertSame($expectedBody, (string) $repository->getAdapter()->getLastRequest()->getBody());
     }
 
     public function testUpdate()
@@ -62,16 +62,16 @@ class RepositoryTest extends TestCase
         $expectedBody = '<test><name>test</name></test>';
         $adapter = $this->getAdapter($this->getMockClient(201, [], $expectedBody));
         $repository = $this->getResource($adapter);
-        $results = $resource->update('123456', ['name' => 'test']);
+        $results = $repository->update('123456', ['name' => 'test']);
         $this->assertArrayHasKey('name', $results);
-        $this->assertSame($expectedBody, (string) $resource->getAdapter()->getLastRequest()->getBody());
+        $this->assertSame($expectedBody, (string) $repository->getAdapter()->getLastRequest()->getBody());
     }
 
     public function testDelete()
     {
         $adapter = $this->getAdapter($this->getMockClient(200));
         $repository = $this->getResource($adapter);
-        $this->assertTrue($resource->delete('123456'));
+        $this->assertTrue($repository->delete('123456'));
     }
 
     private function getResource(AdapterInterface $adapter): RepositoryInterface

@@ -10,8 +10,8 @@ class CasesTest extends TestCase
     {
         $body = $this->getMockModelsXml('case');
         $repository = $this->getMockRepository('cases', $body);
-        $results = $resource->findAll();
-        $this->assertSameLastRequestUri('/kases/open.xml', $resource);
+        $results = $repository->findAll();
+        $this->assertSameLastRequestUri('/kases/open.xml', $repository);
         $this->assertCount(2, $results);
     }
 
@@ -19,8 +19,8 @@ class CasesTest extends TestCase
     {
         $body = $this->getMockModelsXml('case');
         $repository = $this->getMockRepository('cases', $body);
-        $results = $resource->findOpen();
-        $this->assertSameLastRequestUri('/kases/open.xml', $resource);
+        $results = $repository->findOpen();
+        $this->assertSameLastRequestUri('/kases/open.xml', $repository);
         $this->assertCount(2, $results);
     }
 
@@ -28,8 +28,8 @@ class CasesTest extends TestCase
     {
         $body = $this->getMockModelsXml('case');
         $repository = $this->getMockRepository('cases', $body);
-        $results = $resource->findClosed();
-        $this->assertSameLastRequestUri('/kases/closed.xml', $resource);
+        $results = $repository->findClosed();
+        $this->assertSameLastRequestUri('/kases/closed.xml', $repository);
         $this->assertCount(2, $results);
     }
 }
