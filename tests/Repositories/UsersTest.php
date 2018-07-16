@@ -8,7 +8,7 @@ class UsersTest extends TestCase
 {
     public function testMe()
     {
-        $repository = $this->getMockRepository('users', '<user><id>1</id></user>');
+        $repository = $this->getMockRepository('users', $this->getMockModelXml('user'));
         $repository->me();
         $this->assertSameLastRequestUri('/me.xml', $repository);
     }
