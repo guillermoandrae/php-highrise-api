@@ -55,7 +55,7 @@ class TestCase extends PHPUnitTestCase
 
     protected function getMockModelXml(string $name): string
     {
-        $path = sprintf('%s/Mocks/%s.xml', __DIR__, $name);
+        $path = sprintf('%s/data/%s.xml', dirname(__DIR__), $name);
         return file_get_contents($path);
     }
 }

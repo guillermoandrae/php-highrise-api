@@ -22,7 +22,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "GuillermoandraeTest\\Highrise\\": "tests/"
+            "GuillermoandraeTest\\Highrise\\": "tests/src/"
         }
     },
     "scripts": {
