@@ -1,0 +1,6 @@
+<test>
+    <id type="integer">12345</id>
+    <name>Test</name>
+    <created-at type="datetime">2007-04-23T20:25:29Z</created-at>
+    <updated-at type="datetime">2007-04-23T20:25:29Z</updated-at>
+</test>

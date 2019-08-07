@@ -5,6 +5,7 @@ namespace GuillermoandraeTest\Highrise\Repositories;
 use Guillermoandrae\Highrise\Http\AdapterInterface;
 use Guillermoandrae\Highrise\Repositories\AbstractRepository;
 use Guillermoandrae\Highrise\Repositories\RepositoryInterface;
+use GuillermoandraeTest\Highrise\Mocks\TestModel;
 use GuillermoandraeTest\Highrise\TestCase;
 
 class RepositoryTest extends TestCase
@@ -12,16 +13,16 @@ class RepositoryTest extends TestCase
     public function testFind()
     {
         $id = '12345';
-        $expectedBody = sprintf('<test><id>%s</id></test>', $id);
+        $expectedBody = $this->getMockModelXml('test');
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
         $item = $repository->find($id);
-        $this->assertEquals($id, $item['id']);
+        $this->assertEquals($id, $item->getId());
     }
 
     public function testFindAll()
     {
-        $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
+        $expectedBody = $this->getMockModelsXml('test');
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
         $this->assertCount(2, $repository->findAll());
@@ -29,7 +30,7 @@ class RepositoryTest extends TestCase
 
     public function testSearchWithTerm()
     {
-        $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
+        $expectedBody = $this->getMockModelsXml('test');
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
         $repository->search(['term' => 'test']);
@@ -39,7 +40,7 @@ class RepositoryTest extends TestCase
 
     public function testSearchWithCriteria()
     {
-        $expectedBody = '<tests type="array"><test><id>1</id></test><test><id>2</id></test></tests>';
+        $expectedBody = $this->getMockModelsXml('test');
         $adapter = $this->getAdapter($this->getMockClient(200, [], $expectedBody));
         $repository = $this->getResource($adapter);
         $repository->search(['test' => 'test']);
@@ -53,7 +54,6 @@ class RepositoryTest extends TestCase
         $adapter = $this->getAdapter($this->getMockClient(201, [], $expectedBody));
         $repository = $this->getResource($adapter);
         $results = $repository->create(['name' => 'test']);
-        $this->assertArrayHasKey('name', $results);
         $this->assertSame($expectedBody, (string) $repository->getAdapter()->getLastRequest()->getBody());
     }
 
@@ -63,7 +63,6 @@ class RepositoryTest extends TestCase
         $adapter = $this->getAdapter($this->getMockClient(201, [], $expectedBody));
         $repository = $this->getResource($adapter);
         $results = $repository->update('123456', ['name' => 'test']);
-        $this->assertArrayHasKey('name', $results);
         $this->assertSame($expectedBody, (string) $repository->getAdapter()->getLastRequest()->getBody());
     }
 

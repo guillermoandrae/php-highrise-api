@@ -7,13 +7,6 @@ use DateTime;
 final class DealModel extends AbstractModel
 {
     /**
-     * The ID.
-     *
-     * @var integer
-     */
-    protected $id;
-
-    /**
      * The account ID.
      *
      * @var integer
@@ -33,20 +26,6 @@ final class DealModel extends AbstractModel
      * @var integer
      */
     protected $categoryId;
-
-    /**
-     * The group ID.
-     *
-     * @var integer
-     */
-    protected $groupId;
-
-    /**
-     * The owner ID.
-     *
-     * @var integer
-     */
-    protected $ownerId;
 
     /**
      * The party ID.
@@ -119,16 +98,6 @@ final class DealModel extends AbstractModel
     protected $visibleTo;
 
     /**
-     * Returns the id.
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
      * Returns the accountId.
      *
      * @return int
@@ -156,26 +125,6 @@ final class DealModel extends AbstractModel
     public function getCategoryId(): int
     {
         return $this->categoryId;
-    }
-
-    /**
-     * Returns the groupId.
-     *
-     * @return int
-     */
-    public function getGroupId(): int
-    {
-        return $this->groupId;
-    }
-
-    /**
-     * Returns the ownerId.
-     *
-     * @return int
-     */
-    public function getOwnerId(): int
-    {
-        return $this->ownerId;
     }
 
     /**

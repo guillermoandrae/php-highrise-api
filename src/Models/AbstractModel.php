@@ -14,21 +14,28 @@ abstract class AbstractModel extends BaseAbstractModel implements ModelInterface
     protected $xml;
 
     /**
-     * The entity name.
+     * The model ID.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * The model name.
      *
      * @var string
      */
     protected $name;
 
     /**
-     * The date on which the entity was created.
+     * The date on which the model was created.
      *
      * @var DateTime
      */
     protected $createdAt;
 
     /**
-     * The date on which the entity was updated.
+     * The date on which the model was updated.
      *
      * @var DateTime
      */
@@ -37,48 +44,33 @@ abstract class AbstractModel extends BaseAbstractModel implements ModelInterface
     public function __construct(string $xml)
     {
         $this->xml = simplexml_load_string($xml);
-        $this->id = (int) $this->xml->xpath('//id');
+        $this->id = (int) (string) $this->xml->id;
         $this->name = (string) $this->xml->xpath('//name')[0];
         $this->createdAt = new DateTime((string) $this->xml->xpath('//created-at')[0]);
         $this->updatedAt = new DateTime((string) $this->xml->xpath('//updated-at')[0]);
     }
 
-    /**
-     * Returns the SimpleXMLElement.
-     *
-     * @return SimpleXMLElement
-     */
     final public function getXml(): SimpleXMLElement
     {
         return $this->xml;
     }
 
-    /**
-     * Returns the entity name;
-     *
-     * @return string
-     */
-    public function getName(): string
+    final public function getId(): int
+    {
+        return $this->id;
+    }
+
+    final public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Returns the date on which the entity was created.
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt(): DateTime
+    final public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * Returns the date on which the entity was updated.
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt(): DateTime
+    final public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }

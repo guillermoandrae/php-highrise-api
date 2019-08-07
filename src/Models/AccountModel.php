@@ -5,13 +5,6 @@ namespace Guillermoandrae\Highrise\Models;
 final class AccountModel extends AbstractModel
 {
     /**
-     * The ID.
-     *
-     * @var integer
-     */
-    protected $id;
-
-    /**
      * The account subdomain.
      *
      * @var string
@@ -24,13 +17,6 @@ final class AccountModel extends AbstractModel
      * @var string
      */
     protected $plan;
-
-    /**
-     * The account owner's ID.
-     *
-     * @var int
-     */
-    protected $ownerId;
 
     /**
      * The number of people associated with the account.
@@ -60,6 +46,8 @@ final class AccountModel extends AbstractModel
      */
     protected $sslEnabled;
 
+    use GroupAndOwnerAwareTrait;
+
     public function __construct(string $xml)
     {
         parent::__construct($xml);
@@ -69,16 +57,6 @@ final class AccountModel extends AbstractModel
         $this->peopleCount = (int) $this->getXml()->xpath('//people-count')[0];
         $this->storage = (int) $this->getXml()->xpath('//storage')[0];
         $this->colorTheme = (string) $this->getXml()->xpath('//color_theme')[0];
-    }
-
-    /**
-     * Returns the ID.
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     /**
